@@ -18,9 +18,6 @@
         </li>
       <% else %>
         <li>
-          <%= link_to "Home", root_path %>
-        </li>
-        <li>
           <%= link_to "About", about_path %>
         </li>
         <li>
@@ -31,6 +28,10 @@
         </li>
       <% end %>
     </header>
-    <%= yield %>
+
+    <main>
+      <%= yield %>
+    </main>
+
   </body>
 </html>
