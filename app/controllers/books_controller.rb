@@ -19,6 +19,7 @@ class BooksController < ApplicationController
     @book.user_id = current_user.id
     @book.save
     redirect_to book_path(@book.id)
+
   end
 
   def destroy
@@ -31,6 +32,7 @@ class BooksController < ApplicationController
     book = Book.find(params[:id])
     book.update(book_params)
     redirect_to book_path(book.id)
+
   end
 
   private
