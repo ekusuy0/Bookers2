@@ -1,7 +1,10 @@
 <div class="container">
+
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-sm-0 mx-auto">
       <h1>Editing Book</h1>
+
+      <%= render 'error', model: @book %>
 
       <%= form_with model: @book do |f| %>
         <div class="form-group">
@@ -16,6 +19,8 @@
           <%= f.submit 'Update Book', class: "btn btn-success" %>
         </div>
       <% end %>
+      <%= link_to "show", book_path(current_user.id)%> |
+      <%= link_to "Back", book_path %>
     </div>
   </div>
 </div>
