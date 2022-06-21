@@ -1,0 +1,73 @@
+<h1>Users search for "<%= @word %>"</h1>
+
+
+<table class="table table~hover table-inverse">
+  <% if @range == "User" %>
+    <% if @users.present? %>
+      <thead>
+        <th>Image</th>
+        <th>Name</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td>
+              <%= image_tag user.get_profile_image(80,80) %>
+            </td>
+            <td>
+              <%= user.name %>
+            </td>
+            <td>
+              フォロー数：<%= user.followings.count %>
+            </td>
+            <td>
+              フォロワー数：<%= user.followers.count %>
+            </td>
+            <% if user.id == current_user.id %>
+              <td></td>
+            <% else %>
+              <td>
+              <% if current_user.following?(user) %>
+                <%= link_to "フォローを外す", user_relationships_path(user.id), method: :delete %>
+              <% else %>
+                <%= link_to "フォローする", user_relationships_path(user.id), method: :post %>
+              <% end %>
+              </td>
+            <% end %>
+            <td><%= link_to "Show", user_path(user.id) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% else %>
+      <p>検索結果が見つかりませんでした</p>
+    <% end %>
+  <% else %>
+    <% if @books.present? %>
+      <thead>
+        <th></th>
+        <th>Title</th>
+        <th>Opinion</th>
+      </thead>
+      <tbody>
+        <% @books.each do |book| %>
+          <tr>
+            <td>
+              <%= image_tag book.user.get_profile_image(80,80) %>
+            </td>
+            <td>
+              <%= link_to book_path(book.id) do %>
+                <%= book.title %>
+              <% end %>
+            </td>
+            <td>
+              <%= book.body %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% else %>
+      <p>検索結果が見つかりませんでした</p>
+    <% end %>
+  <% end %>
+</table>
