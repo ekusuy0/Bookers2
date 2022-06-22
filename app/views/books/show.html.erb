@@ -22,6 +22,12 @@
             <td>
               <%= @book.body %>
             </td>
+            <td class="<%= @book.id %>">
+              <%= render partial: 'favorites/favorite-btn', locals: { book: @book } %>
+            </td>
+            <td>
+              <p>コメント数：<%= @book.book_comments.count %></p>
+            </td>
             <td>
               <% if @book.user == current_user %>
                 <%= link_to "Edit", edit_book_path, class: 'btn btn-sm btn-success' %>
@@ -31,16 +37,6 @@
               <% if @book.user == current_user %>
                 <%= link_to "Destroy", book_path(@book), class: 'btn btn-sm btn-danger',  method: :delete, "data-confirm" => "本当に削除しますか？"%>
               <% end %>
-            </td>
-            <td>
-              <% if @book.user == current_user %>
-                <span style="color:blue;">♥</span><%= @book.favorites.count %>
-              <% else %>
-              　<%= render 'favorites/favorite-btn', book: @book %>
-              <% end %>
-            </td>
-            <td>
-              <p>コメント数：<%= @book.book_comments.count %></p>
             </td>
           </tr>
         </tbody>
@@ -68,12 +64,7 @@
         </tbody>
       </table>
 
-      <div>
-        <%= form_with model: [@book, @book_comment] do |f| %>
-          <%= f.text_area :comment, placeholder: "コメントをここに", class: 'form-control', size: "20x5" %>
-          <%= f.submit "送信" %>
-        <% end %>
-      </div>
+      <%= render partial: 'comment', locals: { book: @book, book_comment: @book_comment } %>
 
     </div>
   </div>

@@ -2,7 +2,7 @@
   <%= render 'error', model: @book %>
   <div class="row">
 
-    <%= render 'left', user: current_user, book: @new_book %>
+    <%= render 'left', user: current_user, book: @book %>
 
     <div class="col-md-8 offset-md-1">
       <h1>Books</h1>
@@ -29,8 +29,8 @@
                 <% end %>
               </td>
               <td><%= book.body %></td>
-              <td>
-                <%= render 'favorites/favorite-btn', book: book %>
+              <td class="<%= book.id %>">
+                <%= render partial: 'favorites/favorite-btn', locals: { book: book } %>
               </td>
               <td>
                 <p>コメント数：<%= @book.book_comments.count %></p>
