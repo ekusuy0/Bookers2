@@ -56,16 +56,16 @@
             </td>
             <td>
                 <% if book_comment.user == current_user %>
-                  <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), class: 'btn btn-sm btn-danger', method: :delete, "data-confirm" => "本当に削除しますか？"%>
+                  <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), class: 'btn btn-sm btn-danger', method: :delete, "data-confirm" => "本当に削除しますか？", remote: true%>
                 <% end %>
             </td>
           </tr>
           <% end %>
         </tbody>
       </table>
-
-      <%= render partial: 'comment', locals: { book: @book, book_comment: @book_comment } %>
-
+      <div class="comment-box">
+        <%= render partial: 'book_comments/comment', locals: { book: @book, book_comment: @book_comment } %>
+      </div>
     </div>
   </div>
 </div>
