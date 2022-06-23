@@ -1,1 +1,2 @@
- $(".comment-box").html("<%= escape_javascript(render partial: 'books_comments/comment',locals: { book: @book, book_comment: @book_comment }) %>");
+$(".comment-box").html("<%= escape_javascript(render partial: 'book_comments/comment',locals: { book: @book, book_comment: @book_comment }) %>");
+$(".comment-view").html("<%= escape_javascript(render partial: 'book_comments/index',locals: { book: @book }) %>");
