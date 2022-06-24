@@ -6,6 +6,7 @@ class BooksController < ApplicationController
     #includesは一回でbookに紐づいている情報を取り出せるようにするためのもの、ここではbookに紐づいている:favorited_usersを一回で呼び出す
     @books = Book.includes(:favorited_users).
       sort {|a,b|
+      #whereはモデル名.where(カラム名: 条件)でcreate_atカラムからtoからfromまでをすべて取得
         b.favorited_users.includes(:favorites).where(created_at: from...to).size <=>
         a.favorited_users.includes(:favorites).where(created_at: from...to).size
       }
