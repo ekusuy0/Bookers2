@@ -12,10 +12,10 @@
 
       - else
         .fukidasi
-          .chatting
-            .says.px-5
-              %p.text-left
-                = m.content
+          .f.px-5
+            %p.text-left
+              = image_tag m.user.get_profile_image(50,50)
+              = m.content
 
   .row
     .chat-form-box.mx-auto
