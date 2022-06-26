@@ -11,6 +11,7 @@ class Book < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+  
 
   def self.looks(search, word)
     if search == "perfect_match"

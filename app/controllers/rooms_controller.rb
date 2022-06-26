@@ -14,7 +14,7 @@ class RoomsController < ApplicationController
       @messages = @room.messages
       @message = Message.new
       @entries = @room.entries
-      @anoter_entry = @entries.where.not(user_id: current_user.id).first
+      @another_entry = @entries.where.not(user_id: current_user.id).first
     else
       #直前のページにリダイレクトする。直前のページに戻れなかった際のパズをかく
       redirect_back(fallback_location: root_path)
