@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-    <%= render 'left', user: @book.user, book: @new_book %>
+    <%= render 'left', user: @book.user, book: @new_book, isRoom: @isRoom, room: @room, entry: @entry, roomId: @roomId %>
 
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>

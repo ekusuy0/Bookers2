@@ -17,6 +17,21 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @new_book = Book.new
     @book_comment = BookComment.new
+    @user = @book.user
+    @currentUserEntry = Entry.wher(user_id: current_user.id)
+    @userEntry = Entry.where(user_id: @user.id)
+    unless @user.id == current_user.id
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = current.room.id
+          end
+        end
+      end
+    unless @isRoom
+      @room = Room.new
+      @entry = Entry.new 
   end
 
   def edit
@@ -33,7 +48,7 @@ class BooksController < ApplicationController
     @book.user_id = current_user.id
     if @book.save
       flash[:notice] = "You have created book successfully."
-      redirect_to book_path(@book.id) 
+      redirect_to book_path(@book.id)
     else
       @books = Book.all
       render :index
