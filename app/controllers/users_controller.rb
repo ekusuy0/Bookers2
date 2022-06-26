@@ -24,7 +24,9 @@ class UsersController < ApplicationController
       if @isRoom
       else
         @room = Room.new
-        @en
+        @entry = Entry.new
+      end
+    end
   end
 
   def edit
