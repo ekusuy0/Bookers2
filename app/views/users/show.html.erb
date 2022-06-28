@@ -93,6 +93,45 @@
         <td><%= @today_book.count %></td>
       </tbody>
     </table>
+
+
+    <p class="text-center mt-5">7日間の投稿数の比較</p>
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <script>
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+            datasets: [{
+                label: '投稿した本の数',
+                data: [
+                  <%= @six_days_ago.count %>,
+                  <%= @five_days_ago.count %>,
+                  <%= @four_days_ago.count %>,
+                  <%= @three_days_ago.count %>,
+                  <%= @two_days_ago.count %>,
+                  <%= @yesterday_book.count %>,
+                  <%= @today_book.count %>
+                  ],
+                backgroundColor: [ 'rgba(0, 0, 255, 0.2)' ],
+                borderColor: ['rgba(0, 0, 255, 0.2)'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+    </script>
   </div>
 
   </div>
