@@ -27,10 +27,15 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
-    @today = @books.where(created_at: Time.zone.now.all_day)
-    @yesterday = @books.where(created_at: 1.day.ago.all_day)
-    @this_week = @books.where(created_at: 6.day.ago.beginning_of_day..Time.zone.now.end_of_day)
-    @last_week = @books.where(created_at: 2.week.ago.beginning_of_day..1.week.ago.end_of_day)
+    @today_book = @books.created_today
+    @yesterday_book = @books.created_yesterday
+    @this_week_book = @books.created_this_week
+    @last_week_book = @books.created_last_week
+    @two_days_ago = @books.created_two_days_ago
+    @three_days_ago = @books.created_three_days_ago
+    @four_days_ago = @books.created_four_days_ago
+    @five_days_ago = @books.created_five_days_ago
+    @six_days_ago = @books.created_six_days_ago
   end
 
   def edit
