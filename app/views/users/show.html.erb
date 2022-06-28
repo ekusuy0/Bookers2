@@ -45,7 +45,7 @@
         <td><%= @yesterday.count %></td>
         <td>
           <% if @yesterday.count == 0 %>
-            <%= @today.count * 100 %>%
+            前日の投稿が0のため計算できません
           <% else %>
             <%= @today.count / @yesterday.count * 100 %>%
           <% end %>
@@ -64,7 +64,7 @@
         <td><%= @last_week.count %></td>
         <td>
           <% if @last_week.count == 0 %>
-            <%= @this_week.count * 100 %>%
+            前週の投稿が0のため計算できません
           <% else %>
             <%= @this_week.count / @last_week.count * 100 %>%
           <% end %>
