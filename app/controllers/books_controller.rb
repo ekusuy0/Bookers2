@@ -37,6 +37,7 @@ class BooksController < ApplicationController
     unless View.find_by(user_id: current_user.id, book_id: @book.id)
       current_user.views.create(book_id: @book.id)
     end
+    
   end
 
   def edit
