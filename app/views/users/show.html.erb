@@ -47,7 +47,7 @@
           <% if @yesterday_book.count == 0 %>
             前日の投稿が0のため計算できません
           <% else %>
-            <%= @today_book.count / @yesterday_book.count * 100 %>%
+            <%= (@today_book.count/@yesterday_book.count.to_f * 100).round %>%
           <% end %>
         </td>
       </tbody>
@@ -66,7 +66,7 @@
           <% if @last_week_book.count == 0 %>
             前週の投稿が0のため計算できません
           <% else %>
-            <%= @this_week_book.count / @last_week_book.count * 100 %>%
+            <%= (@this_week_book.count / @last_week_book.count.to_f * 100).round %>%
           <% end %>
         </td>
       </tbody>
@@ -131,7 +131,7 @@
                   suggestedMax: 10,
                 },
                 x:{
-                  stacked: true
+                stacked: true
                 },
               },
             }

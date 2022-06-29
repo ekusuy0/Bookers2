@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :entries, dependent: :destroy
 
   has_many :views, dependent: :destroy
+  has_many :group_users, dependent: :destroy
 
   has_one_attached :profile_image
 
