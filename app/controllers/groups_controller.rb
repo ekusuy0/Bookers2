@@ -1,14 +1,19 @@
 class GroupsController < ApplicationController
-    def index
-    end
 
-    def create
-    end
+  def new
+    @group = Group.new
+  end
 
-    def edit
-    end
+  def create
+    @group
+  end
 
-    def update
-    end
+  def index
+  end
 
+  def edit
+  end
+
+  def update
+  end
 end
