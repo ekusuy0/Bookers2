@@ -29,6 +29,9 @@
               <p>コメント数：<%= @book.book_comments.count %></p>
             </td>
             <td>
+              <%= render 'rate', book: @book %>
+            </td>
+            <td>
               <% if @book.user == current_user %>
                 <%= link_to "Edit", edit_book_path, class: 'btn btn-sm btn-success' %>
               <% end %>

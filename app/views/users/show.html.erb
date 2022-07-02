@@ -28,6 +28,9 @@
               <% end %>
             </td>
             <td><%= book.body %></td>
+            <td>
+              <%= render 'books/rate', book: book %>
+            </td>
             <td>閲覧数：<%= book.views.count %></td>
           </tr>
         <% end %>

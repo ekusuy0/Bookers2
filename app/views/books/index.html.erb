@@ -36,6 +36,10 @@
                 <p>コメント数：<%= book.book_comments.count %></p>
               </td>
               <td>
+                <%= render 'rate', book: book %>
+              </td>
+              <td class="book-evaluation" date-score="<%= book.rate %>"></td>
+              <td>
                 <p>PV数：<%= book.views.count %></p>
               </td>
             </tr>
