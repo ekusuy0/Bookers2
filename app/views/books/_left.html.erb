@@ -82,12 +82,17 @@
   <% end %>
 
   <script>
+  $(document).on('turbolinks:load', function() {
+    $('#evaluate-stars').empty();
     $('#evaluate-stars').raty({
+      size: 36,
+      starHalf: "<%= asset_path('star-half.png') %>",
       starOn: "<%= asset_path('star-on.png') %>",
       starOff: "<%= asset_path('star-off.png') %>",
       scoreName: 'book[rate]',
-      half: false,
+      half: true,
     });
+  });
   </script>
 
 
