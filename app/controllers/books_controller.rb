@@ -3,13 +3,20 @@ class BooksController < ApplicationController
   def index
     to = Time.current.at_end_of_day
     from = (to - 6.day).at_beginning_of_day
-    #includesは一回でbookに紐づいている情報を取り出せるようにするためのもの、ここではbookに紐づいている:favorited_usersを一回で呼び出す
-    @books = Book.includes(:favorited_users).
+
+    if params[:fast]
+      @books = Book.fast
+    elsif params[:rate_count]
+      @books = Book.rate_count
+    else
+      #includesは一回でbookに紐づいている情報を取り出せるようにするためのもの、ここではbookに紐づいている:favorited_usersを一回で呼び出す
+      @books = Book.includes(:favorited_users).
       sort {|a,b|
-      #whereはモデル名.where(カラム名: 条件)でcreate_atカラムからtoからfromまでをすべて取得
+        #whereはモデル名.where(カラム名: 条件)でcreate_atカラムからtoからfromまでをすべて取得
         b.favorited_users.includes(:favorites).where(created_at: from...to).size <=>
         a.favorited_users.includes(:favorites).where(created_at: from...to).size
       }
+    end
     @book = Book.new
   end
 
@@ -37,7 +44,7 @@ class BooksController < ApplicationController
     unless View.find_by(user_id: current_user.id, book_id: @book.id)
       current_user.views.create(book_id: @book.id)
     end
-    
+
   end
 
   def edit
