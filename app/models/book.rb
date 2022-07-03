@@ -5,6 +5,8 @@ class Book < ApplicationRecord
   has_many :book_comments, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
   has_many :views, dependent: :destroy
+  has_many :book_tags, dependent: :destroy
+  has_many :tags, through: :book_tags
 
   validates :title, presence: true
   validates :body, presence: true, length: { maximum: 200 }
@@ -26,6 +28,10 @@ class Book < ApplicationRecord
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
+  end
+
+  def save_tags(tags)
+    current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
   end
 
 
