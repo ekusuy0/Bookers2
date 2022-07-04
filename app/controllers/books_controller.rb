@@ -18,6 +18,7 @@ class BooksController < ApplicationController
       }
     end
     @book = Book.new
+    @tags = Tag.all
   end
 
   def show

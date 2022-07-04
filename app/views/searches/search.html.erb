@@ -1,8 +1,6 @@
-<h1>Users search for "<%= @word %>"</h1>
-
-
-<table class="table table-hover table-inverse">
-  <% if @range == "User" %>
+<% if @range == "User" %>
+  <h1>Users search for "<%= @word %>"</h1>
+  <table class="table table-hover table-inverse">
     <% if @users.present? %>
       <thead>
         <th>Image</th>
@@ -42,12 +40,16 @@
     <% else %>
       <p>検索結果が見つかりませんでした</p>
     <% end %>
-  <% else %>
+  </table>
+<% elsif @range == "Book" || @range == "Tag" %>
+  <h1>Books search for "<%= @word %>"</h1>
+  <table class="table table-hover table-inverse">
     <% if @books.present? %>
       <thead>
         <th></th>
         <th>Title</th>
         <th>Opinion</th>
+        <th colspan="3"></th>
       </thead>
       <tbody>
         <% @books.each do |book| %>
@@ -63,11 +65,22 @@
             <td>
               <%= book.body %>
             </td>
+            <td>
+              <% @tags.each do |tag| %>
+                <li style="list-style: none;"><%= link_to tag.tag_name, search_path %></li>
+              <% end %>
+            </td>
+            <td class="<%= book.id %>">
+              <%= render partial: 'favorites/favorite-btn', locals: { book: book } %>
+            </td>
+            <td>
+              <p>コメント数：<%= book.book_comments.count %></p>
+            </td>
           </tr>
         <% end %>
       </tbody>
     <% else %>
       <p>検索結果が見つかりませんでした</p>
     <% end %>
-  <% end %>
-</table>
+    </table>
+<% end %>
