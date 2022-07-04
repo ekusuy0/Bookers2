@@ -33,7 +33,9 @@
               </td>
               <td><%= book.body %></td>
               <td>
-                <%= book.tags.map(&:tag_name).join(',') %>
+                <%= link_to search_path(range: "Tag", word: book.tags.map(&:tag_name).join(',')) do %>
+                  <%= book.tags.map(&:tag_name).join(',') %>
+                <% end %>
               </td>
               <td class="<%= book.id %>">
                 <%= render partial: 'favorites/favorite-btn', locals: { book: book } %>
