@@ -41,7 +41,7 @@
       <p>検索結果が見つかりませんでした</p>
     <% end %>
   </table>
-<% elsif @range == "Book" || @range == "Tag" %>
+<% elsif @range == "Book" %>
   <h1>Books search for "<%= @word %>"</h1>
   <table class="table table-hover table-inverse">
     <% if @books.present? %>
@@ -65,8 +65,43 @@
             <td>
               <%= book.body %>
             </td>
+            <td class="<%= book.id %>">
+              <%= render partial: 'favorites/favorite-btn', locals: { book: book } %>
+            </td>
             <td>
-              <% @tags.each do |tag| %>
+              <p>コメント数：<%= book.book_comments.count %></p>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% else %>
+      <p>検索結果が見つかりませんでした</p>
+    <% end %>
+    </table>
+  <% elsif @range == "Tag" %>
+    <h1>Bookers search for "<%= @word %>"</h1>
+    <table class="table table-hover table-inverse">
+    <% if @tags.present? %>
+      <thead>
+        <th></th>
+        <th>Title</th>
+        <th>Opinion</th>
+        <th>Tag</th>
+        <th colspan="3"></th>
+      </thead>
+      <tbody>
+        <% @tags.each do |book| %>
+          <tr>
+            <td>
+              <%= link_to book_path(book.id) do %>
+                <%= book.title %>
+              <% end %>
+            </td>
+            <td>
+              <%= book.body %>
+            </td>
+            <td>
+              <% book.tags.each do |tag| %>
                 <li style="list-style: none;"><%= link_to tag.tag_name, search_path %></li>
               <% end %>
             </td>
@@ -82,5 +117,4 @@
     <% else %>
       <p>検索結果が見つかりませんでした</p>
     <% end %>
-    </table>
 <% end %>
