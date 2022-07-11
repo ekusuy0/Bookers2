@@ -127,16 +127,15 @@
                 display: true,
                 text: '7日間の投稿数の比較'
               },
-              responsive: true,
               scales: {
-                y:{
-                  suggestedMin: 0,
-                  suggestedMax: 10,
-                },
-                x:{
-                stacked: true
-                },
-              },
+                yAxes: [{
+                    ticks: {
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                        beginAtZero: true
+                    }
+                }]
+              }
             }
           });
         });
