@@ -93,7 +93,7 @@
                 <% end %>
               </div>
 
-              <div class="col">
+              <div class="col offset-3">
                 <%= form_with url: search_path, local: true, method: :get do |f| %>
                   <%= f.text_field :word %>
                   <%= f.hidden_field :range, :value => "Tag" %>
