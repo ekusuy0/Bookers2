@@ -19,6 +19,10 @@
           <%= f.text_area :introduction, class: "form-control" %>
         </div>
         <div class="form-group">
+          <label for="color">ヘッダーの色を変える</label>
+          <%= f.select :color, [["赤", "red"], ["青", "blue"], ["緑", "green"]], {include_blank: current_user.color } %>
+        </div>
+        <div class="form-group">
           <%= f.submit 'Update User', class: 'btn btn-secondary' %>
         </div>
       <% end %>
